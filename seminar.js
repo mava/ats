@@ -112,7 +112,7 @@ const param = {
 
 const pdf = {
   path: (iso) => `pdf/${iso}.pdf`,
-  match: (pathname) => pathname.match(/^\/pdf\/(\d{4}-\d{2}-\d{2})\.pdf$/)?.[1],
+  match: (pathname) => pathname.match(/\/pdf\/(\d{4}-\d{2}-\d{2})\.pdf$/)?.[1],
 };
 
 const csv = (() => {
