@@ -2,9 +2,9 @@
 
 const escapeRegex = RegExp.escape ?? ((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 const invalid = (reason) => ({ invalid: reason });
-const fillHoles = (e) => Array.from(e); // […,,…] → […,undefined,…] (.every/.some/.map/… skip holes!)
-const isArrayOfNStrings = (e, N) =>
-  Array.isArray(e) && e.length === N && fillHoles(e).every((f) => typeof f === "string");
+const fillHoles = (a) => Array.from(a); // […,,…] → […,undefined,…] (.every/.some/.map/… skip holes!)
+const isArrayOfNStrings = (a, N) =>
+  Array.isArray(a) && a.length === N && fillHoles(a).every((s) => typeof s === "string");
 
 const term = (() => {
   const compare = (a, b) => TERMS[b].firstMonth - TERMS[a].firstMonth; // reverse chronological
@@ -149,7 +149,7 @@ function showError() {
   addToBaseDocTitle("404");
   const match = pdf.match(window.location.href);
   dom.info.textContent = match && talks.some((t) => t.date.iso === match && t.title)
-    ? "The PDF is not available (yet)." : "Page not found.";
+    ? "PDF not available (yet?)" : "Page not found";
 }
 
 function makeRegexes(query) { // "/…/flags"    → [raw regex] or undefined if invalid
