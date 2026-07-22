@@ -1,5 +1,6 @@
 "use strict";
 
+const escapeRegex = RegExp.escape ?? ((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 const invalid = (reason) => ({ invalid: reason });
 const fillHoles = (e) => Array.from(e); // […,,…] → […,undefined,…] (.every/.some/.map/… skip holes!)
 const isArrayOfNStrings = (e, N) =>
@@ -111,8 +112,9 @@ const param = {
 };
 
 const pdf = {
-  path: (iso) => `pdf/${iso}.pdf`,
-  match: (pathname) => pathname.match(/\/pdf\/(\d{4}-\d{2}-\d{2})\.pdf$/)?.[1],
+  regex: new RegExp(`^${escapeRegex(document.baseURI)}pdf\/(\d{4}-\d{2}-\d{2})\.pdf$`),
+  match(url) { return url.match(this.regex)?.[1]; },
+  path(dateISO) { return `pdf/${dateISO}.pdf`; },
 };
 
 const csv = (() => {
@@ -145,12 +147,11 @@ function el(tag, { dataset, ...properties } = {}, ...children) {
 function showError() {
   dom.headline.textContent = "404 — Not Found";
   addToBaseDocTitle("404");
-  const match = pdf.match(window.location.pathname);
+  const match = pdf.match(window.location.href);
   dom.info.textContent = match && talks.some((t) => t.date.iso === match && t.title)
     ? "The PDF is not available (yet)." : "Page not found.";
 }
 
-const escapeRegex = RegExp.escape ?? ((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
 function makeRegexes(query) { // "/…/flags"    → [raw regex] or undefined if invalid
                               // anything else → array containing one regex per word
   const m = query.match(/^\/(.+)\/([a-z]*)$/);
