@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/ats/">
+  <title>Algebra Topology Seminar</title>
+  <meta name="description" content="Algebra/Topology Seminar, University at Albany, State University of New York">
+  <meta name="author" content="Marco Varisco">
+  <meta name="theme-color" content="rgb(70 22 107)">
+  <link rel="stylesheet" href="seminar.css">
+  <link rel="icon" type="image/png" href="logo.png">
+</head>
+<body data-page="talks">
+  <header id="header">
+    <div class="core">
+      <a href="https://www.albany.edu/math">
+        <img class="logo" alt="Math homepage, University at Albany, SUNY" src="logo.png" width="36" height="36">
+      </a>
+      <h1 id="masthead"></h1>
+      <noscript><p>This page won’t work without JavaScript.</p></noscript>
+    </div>
+  </header>
+  <div class="strip">
+    <div class="core">
+      <h2 id="headline" aria-live="polite"></h2>
+      <div id="controls">
+        <button id="toggle" type="button" aria-expanded="false" aria-controls="panel" aria-label="Semester and search">
+          <span class="bars" aria-hidden="true">
+            <span class="bar bar-top"></span>
+            <span class="bar bar-mid"></span>
+            <span class="bar bar-bot"></span>
+          </span>
+        </button>
+        <div id="panel">
+          <select id="select">
+            <option value="" disabled selected>Jump to semester…</option>
+          </select>
+          <form id="form" role="search">
+            <input id="search" type="search" spellcheck="false" placeholder="Enter search terms…">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="info">
+    <p id="info" class="core"></p>
+  </div>
+  <main>
+    <div id="content" class="core"></div>
+  </main>
+  <footer>
+    <div id="colophon" class="core">
+      <p><a href="info.html">Info &amp; Stats</a></p>
+    </div>
+  </footer>
+  <script src="seminardata.js"></script>
+  <script src="seminar.js"></script>
+</body>
+</html>
