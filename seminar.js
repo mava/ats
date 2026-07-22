@@ -112,7 +112,7 @@ const param = {
 };
 
 const pdf = {
-  regex: new RegExp(`^${escapeRegex(document.baseURI)}pdf\/(\d{4}-\d{2}-\d{2})\.pdf$`),
+  regex: new RegExp(`^${escapeRegex(document.baseURI)}pdf/(\\d{4}-\\d{2}-\\d{2})\\.pdf$`),
   match(url) { return url.match(this.regex)?.[1]; },
   path(dateISO) { return `pdf/${dateISO}.pdf`; },
 };
